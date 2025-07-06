@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منقوشة - Manqooshi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        :root {
+            --primary: #c52a1e;
+            --secondary: #e6b325;
+            --light: #f5f0e5;
+            --dark: #3d251e;
+            --accent: #8f4e2a;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%238f4e2a" stroke-width="2" stroke-dasharray="10,5" opacity="0.2"/></svg>');
+            background-size: 200px;
+        }
+        
+        /* Decorative shapes */
+        .manaqeesh-shape {
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.2;
+            z-index: -1;
+            animation: float 8s infinite ease-in-out;
+        }
+        
+        .shape-1 { 
+            width: 120px; 
+            height: 120px; 
+            top: 10%; 
+            left: 5%; 
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23c52a1e" stroke-width="3" stroke-dasharray="15,10" /></svg>');
+        }
+        .shape-2 { 
+            width: 90px; 
+            height: 90px; 
+            top: 25%; 
+            right: 10%; 
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23e6b325" stroke-width="2" stroke-dasharray="8,6" /></svg>');
+        }
+        .shape-3 { 
+            width: 80px; 
+            height: 80px; 
+            bottom: 15%; 
+            left: 15%; 
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="35" fill="none" stroke="%238f4e2a" stroke-width="2" stroke-dasharray="12,7" /></svg>');
+        }
+        .shape-4 { 
+            width: 100px; 
+            height: 100px; 
+            bottom: 20%; 
+            right: 8%; 
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23c52a1e" stroke-width="3" stroke-dasharray="10,8" /></svg>');
+        }
+        
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        .title {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .title h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .title span {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            color: white;
+            text-align: left;
+        }
+        
+        .contact-info i {
+            margin-left: 8px;
+            color: var(--secondary);
+        }
+        
+        /* Carousel */
+        .carousel {
+            position: relative;
+            max-width: 1200px;
+            margin: 30px auto;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 5px solid white;
+        }
+        
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+            height: 100%;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(61, 37, 30, 0.9), transparent);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .carousel-caption h3 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+        
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .carousel-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        /* Categories */
+        .categories {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .categories h2 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .categories h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+        
+        .category-btn {
+            background: white;
+            border: 2px solid var(--secondary);
+            color: var(--dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Menu items */
+        .menu {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .menu-item-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .menu-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(61, 37, 30, 0.8), transparent);
+            color: white;
+            padding: 1rem;
+        }
+        
+        .menu-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .menu-item p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+        
+        .price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin: 0.5rem 0;
+            display: block;
+        }
+        
+        .add-to-cart {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(197, 42, 30, 0.3);
+        }
+        
+        .add-to-cart:hover {
+            background: #a52218;
+            transform: scale(1.03);
+        }
+        
+        /* Cart */
+        .cart-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        
+        .cart-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .cart-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--secondary);
+            color: var(--dark);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cart-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .cart-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+        
+        .cart-modal.active .cart-content {
+            transform: translateY(0);
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 1rem;
+        }
+        
+        .cart-header h2 {
+            color: var(--primary);
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        .cart-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: 700;
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cart-item-quantity {
+            width: 40px;
+            text-align: center;
+        }
+        
+        .cart-item-remove {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin: 1.5rem 0;
+        }
+        
+        .checkout-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .checkout-btn:hover {
+            background: #1da851;
+            transform: scale(1.02);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-section h3::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-section p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .contact-info {
+                text-align: center;
+            }
+            
+            .carousel {
+                height: 300px;
+            }
+            
+            .carousel-caption h3 {
+                font-size: 1.5rem;
+            }
+            
+            .title h1 {
+                font-size: 2rem;
+            }
+            
+            .title span {
+                font-size: 1.5rem;
+            }
+            
+            .cart-container {
+                top: 10px;
+                left: 10px;
+            }
+            
+            .cart-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .carousel {
+                height: 250px;
+            }
+            
+            .category-buttons {
+                gap: 8px;
+            }
+            
+            .category-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .menu {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative manaqeesh shapes -->
+    <div class="manaqeesh-shape shape-1"></div>
+    <div class="manaqeesh-shape shape-2"></div>
+    <div class="manaqeesh-shape shape-3"></div>
+    <div class="manaqeesh-shape shape-4"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-pizza-slice"></i>
+                </div>
+                <div class="title">
+                    <h1>منقوشة</h1>
+                    <span>Manqooshi</span>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> 71-182 561</p>
+                <p><i class="fas fa-map-marker-alt"></i> صيدا، مقابل مسجد الزعتري، بجانب سناك البابا</p>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Carousel -->
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=1200&q=80');">
+                <div class="carousel-caption">
+                    <h3>منقوشة الزعتر</h3>
+                    <p>طازجة من الفرن مع زعتر وزيت زيتون</p>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?auto=format&fit=crop&w=1200&q=80');">
+                <div class="carousel-caption">
+                    <h3>منقوشة الجبنة</h3>
+                    <p>جبنة عكاوي طازجة مع زعتر</p>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80');">
+                <div class="carousel-caption">
+                    <h3>منقوشة لحم</h3>
+                    <p>لحم بقري طازج مع بهارات مميزة</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-btn prev"><i class="fas fa-chevron-right"></i></button>
+            <button class="carousel-btn next"><i class="fas fa-chevron-left"></i></button>
+        </div>
+    </div>
+    
+    <!-- Categories -->
+    <section class="categories">
+        <h2>فئاتنا</h2>
+        <div class="category-buttons">
+            <button class="category-btn active">الكل</button>
+            <button class="category-btn">المناقيش التقليدية</button>
+            <button class="category-btn">مناقيش الجبنة</button>
+            <button class="category-btn">مناقيش اللحمة</button>
+            <button class="category-btn">الحلويات</button>
+            <button class="category-btn">المشروبات</button>
+        </div>
+    </section>
+    
+    <!-- Menu -->
+    <section class="menu">
+        <!-- Menu items will be generated by JavaScript -->
+    </section>
+    
+    <!-- Cart -->
+    <div class="cart-container">
+        <button class="cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </button>
+    </div>
+    
+    <div class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>سلة المشتريات</h2>
+                <button class="close-cart"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-items">
+                <!-- Cart items will be added here -->
+            </div>
+            <div class="cart-total">
+                <span>المجموع:</span>
+                <span class="total-price">0 L.L</span>
+            </div>
+            <button class="checkout-btn">
+                <i class="fab fa-whatsapp"></i> إرسال الطلب عبر واتساب
+            </button>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>عن منقوشة</h3>
+                <p>نقدم ألذ وأشهى المناقيش الطازجة منذ 1995، باستخدام أفضل المكونات وأساليب التحضير التقليدية.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>ساعات العمل</h3>
+                <p>الأحد - الخميس: 7:30 صباحاً - 1:30 ظهراً، 5:30 مساءً - 11:00 مساءً</p>
+                <p>السبت: 7:30 صباحاً - 1:30 ظهراً، 5:30 مساءً - 11:00 مساءً</p>
+                <p>الجمعة: عطلة</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>تابعونا</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2023 منقوشة. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Menu data
+        const menuItems = [
+            {
+                id: 1,
+                name: "منقوشة الزعتر",
+                description: "زعتر وزيت زيتون مع سمسم",
+                price: 15000,
+                category: "المناقيش التقليدية",
+                image: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                name: "منقوشة الجبنة",
+                description: "جبنة عكاوي طازجة مع زعتر",
+                price: 18000,
+                category: "مناقيش الجبنة",
+                image: "https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                name: "منقوشة اللحمة",
+                description: "لحم بقري طازج مع بهارات مميزة",
+                price: 22000,
+                category: "مناقيش اللحمة",
+                image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 4,
+                name: "منقوشة كشك",
+                description: "كشك وزيت زيتون مع جوز",
+                price: 17000,
+                category: "المناقيش التقليدية",
+                image: "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 5,
+                name: "منقوشة جبنة وزعتر",
+                description: "مزيج من الجبنة والزعتر",
+                price: 20000,
+                category: "مناقيش الجبنة",
+                image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 6,
+                name: "منقوشة سبانخ",
+                description: "سبانخ طازجة مع جبنة وزيت",
+                price: 19000,
+                category: "المناقيش التقليدية",
+                image: "https://images.unsplash.com/photo-1618219908423-1dbe974b8a7a?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 7,
+                name: "منقوشة كباب",
+                description: "كباب حلال مع بصل وطماطم",
+                price: 25000,
+                category: "مناقيش اللحمة",
+                image: "https://images.unsplash.com/photo-1601924582970-9238bcb495d9?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 8,
+                name: "كنافة",
+                description: "كنافة نابلسية مع جبنة",
+                price: 20000,
+                category: "الحلويات",
+                image: "https://images.unsplash.com/photo-1631008882687-254d4d1c9c8d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 9,
+                name: "مشروب التمر هندي",
+                description: "طازج ومبرد",
+                price: 8000,
+                category: "المشروبات",
+                image: "https://images.unsplash.com/photo-1621274403997-37aace184f49?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+        
+        // Cart functionality
+        let cart = [];
+        const cartBtn = document.querySelector('.cart-btn');
+        const cartModal = document.querySelector('.cart-modal');
+        const closeCart = document.querySelector('.close-cart');
+        const cartItemsContainer = document.querySelector('.cart-items');
+        const cartCount = document.querySelector('.cart-count');
+        const totalPriceElement = document.querySelector('.total-price');
+        const menuContainer = document.querySelector('.menu');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenu(menuItems);
+            initCarousel();
+            
+            // Event listeners
+            cartBtn.addEventListener('click', () => {
+                cartModal.classList.add('active');
+                renderCartItems();
+            });
+            
+            closeCart.addEventListener('click', () => {
+                cartModal.classList.remove('active');
+            });
+            
+            document.querySelector('.checkout-btn').addEventListener('click', () => {
+                checkout();
+            });
+            
+            // Category filtering
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filter menu items
+                    const category = button.textContent;
+                    if (category === 'الكل') {
+                        renderMenu(menuItems);
+                    } else {
+                        const filteredItems = menuItems.filter(item => item.category === category);
+                        renderMenu(filteredItems);
+                    }
+                });
+            });
+        });
+        
+        // Render menu items
+        function renderMenu(items) {
+            menuContainer.innerHTML = '';
+            
+            items.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.classList.add('menu-item');
+                menuItem.innerHTML = `
+                    <div class="menu-item-img" style="background-image: url('${item.image}')">
+                        <div class="menu-item-overlay">
+                            <h3>${item.name}</h3>
+                            <p>${item.description}</p>
+                        </div>
+                    </div>
+                    <div class="menu-item-content">
+                        <span class="price">${item.price.toLocaleString()} L.L</span>
+                        <button class="add-to-cart" data-id="${item.id}">
+                            <i class="fas fa-plus"></i> إضافة إلى السلة
+                        </button>
+                    </div>
+                `;
+                menuContainer.appendChild(menuItem);
+            });
+            
+            // Add event listeners to add-to-cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const id = parseInt(e.target.closest('.add-to-cart').dataset.id);
+                    addToCart(id);
+                    
+                    // Animation effect
+                    const btn = e.target.closest('.add-to-cart');
+                    btn.innerHTML = '<i class="fas fa-check"></i> تمت الإضافة';
+                    btn.style.background = '#2ecc71';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-plus"></i> إضافة إلى السلة';
+                        btn.style.background = '';
+                    }, 1500);
+                });
+            });
+        }
+        
+        // Add item to cart
+        function addToCart(id) {
+            const item = menuItems.find(item => item.id === id);
+            const existingItem = cart.find(cartItem => cartItem.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({...item, quantity: 1});
+            }
+            
+            updateCartCount();
+        }
+        
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = count;
+        }
+        
+        // Render cart items
+        function renderCartItems() {
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="empty-cart">سلة المشتريات فارغة</p>';
+                totalPriceElement.textContent = '0 L.L';
+                return;
+            }
+            
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">${item.price.toLocaleString()} L.L × ${item.quantity}</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="cart-item-remove" data-id="${item.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+            
+            totalPriceElement.textContent = total.toLocaleString() + ' L.L';
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.cart-item-remove').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const id = parseInt(e.target.closest('.cart-item-remove').dataset.id);
+                    removeFromCart(id);
+                });
+            });
+        }
+        
+        // Remove item from cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartCount();
+            renderCartItems();
+        }
+        
+        // Checkout via WhatsApp
+        function checkout() {
+            if (cart.length === 0) return;
+            
+            let message = "مرحباً، أود طلب:\n";
+            
+            cart.forEach(item => {
+                message += `${item.name} - ${item.quantity} × ${item.price.toLocaleString()} L.L\n`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `\nالمجموع: ${total.toLocaleString()} L.L`;
+            message += "\n\nالعنوان: صيدا، مقابل مسجد الزعتري، بجانب سناك البابا";
+            message += "\nشكراً!";
+            
+            const phone = "71182561";
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/961${phone}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+            cart = [];
+            updateCartCount();
+            cartModal.classList.remove('active');
+        }
+        
+        // Carousel functionality
+        function initCarousel() {
+            const carousel = document.querySelector('.carousel-inner');
+            const items = document.querySelectorAll('.carousel-item');
+            const prevBtn = document.querySelector('.carousel-btn.prev');
+            const nextBtn = document.querySelector('.carousel-btn.next');
+            
+            let currentIndex = 0;
+            const totalItems = items.length;
+            
+            function goToSlide(index) {
+                if (index < 0) index = totalItems - 1;
+                else if (index >= totalItems) index = 0;
+                
+                currentIndex = index;
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                goToSlide(currentIndex - 1);
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                goToSlide(currentIndex + 1);
+            });
+            
+            // Auto slide
+            setInterval(() => {
+                goToSlide(currentIndex + 1);
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
